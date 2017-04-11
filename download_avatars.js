@@ -38,6 +38,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
   request.get(requestOptions, (error, response, body) => {
     // Create variable to represent the parsed requestURL
     var contributorObject = JSON.parse(body);
+    console.log("ROHIT"+contributorObject.message);
     if (contributorObject.message !== undefined) {
       console.log("Arguments not found. " + repoOwner + " and " + repoName + " are not valid arguments.");
       return;
