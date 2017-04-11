@@ -38,7 +38,10 @@ function getRepoContributors(repoOwner, repoName, cb) {
   })
 };
 
-getRepoContributors(process.argv[2], process.argv[3], function(err, result) {
+if (process.argv.length < 3) {
+  console.log("Please specify two arguments");
+} else {
+  getRepoContributors(process.argv[2], process.argv[3], function(err, result) {
   console.log("Errors:", err);
   console.log("Result:", result);
-});
+})};
