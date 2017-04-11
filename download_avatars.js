@@ -42,7 +42,6 @@ function getRepoContributors(repoOwner, repoName, cb) {
       console.log("Arguments not found. " + repoOwner + " and " + repoName + " are not valid arguments.");
       return;
     }
-
     // For each item within the github project info object, invoke the imageDownload function to download
     // each users avatar to a specific coresponding file name
     contributorObject.forEach((item) => {
