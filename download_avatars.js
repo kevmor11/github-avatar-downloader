@@ -14,7 +14,11 @@ function getRepoContributors(repoOwner, repoName, cb) {
       'User-Agent': 'github-downloader/1.0'
     }
   };
-  request.get(requestOptions)
+
+  request.get(requestOptions, (error, response, body) => {
+    var contributorModule = JSON.parse(body);
+    contributorModule.forEach((item) => request.get(item['avatar_url']).pipe(fs.createWriteStream(`./${item['login']}_avatar.jpg`)));
+  })
        .on('error', function (err) {
          throw err;
        })
@@ -22,7 +26,6 @@ function getRepoContributors(repoOwner, repoName, cb) {
         console.log('Downloading image...');
         console.log('Response Status Code: ', response.statusCode, 'Response Message: ', response.statusMessage, 'Content Type: ', response.headers['content-type']);
        })
-       .pipe(fs.createWriteStream('./avatar.jpg'));
        console.log('Download complete.');
 }
 
